@@ -1,0 +1,190 @@
+{
+  "main": {
+    "id": "b265004da044bfe7",
+    "type": "split",
+    "children": [
+      {
+        "id": "532060ec64a7d241",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f4758158e7ffeb3b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "system-software-engineering/Lectures.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "c60f8b03a83a7923",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "system-software-engineering/Appl1-HTTPPingPongLeonelliCaterinaV0.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "49f895e727c3b57d",
+    "type": "split",
+    "children": [
+      {
+        "id": "a6d870920ff05e81",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e3cd7a52e9bbe85b",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "87a9b8a273329485",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "4c43193f69e72665",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "389ce31afef52ac7",
+    "type": "split",
+    "children": [
+      {
+        "id": "0df6652e22661655",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4dfdba1d4a934210",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "system-software-engineering/Appl1-HTTPPingPongLeonelliCaterinaV0.md",
+                "collapseAll": true,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "4fa3c344fdd82d94",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "system-software-engineering/Appl1-HTTPPingPongLeonelliCaterinaV0.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "320786c0f7b705f4",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "b7f373fb8722b6db",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "system-software-engineering/Appl1-HTTPPingPongLeonelliCaterinaV0.md"
+              }
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "e3cd7a52e9bbe85b",
+  "lastOpenFiles": [
+    "system-software-engineering/README.md",
+    "system-software-engineering",
+    "system-software-engineering/Pasted image 20230321170013.png",
+    "system-software-engineering/Appl1-HTTPPingPongLeonelliCaterinaV0.md",
+    "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV0.md",
+    "system-software-engineering/Lectures.md",
+    "system-software-engineering/Pasted image 20230328152258.png",
+    "system-software-engineering/Pasted image 20230328145610.png",
+    "system-software-engineering/Pasted image 20230328102341.png",
+    "system-software-engineering/Pasted image 20230328102327.png",
+    "system-software-engineering/Pasted image 20230321140911.png",
+    "system-software-engineering/Pasted image 20230321152403.png",
+    "system-software-engineering/Pasted image 20230321165953.png",
+    "temp",
+    "notes-iss/README.md",
+    "notes-iss",
+    "Prova.md",
+    "obsidian-git/manifest.json",
+    "obsidian-git/main.js",
+    "obsidian-git",
+    "Lez 1.md",
+    "iss-notes",
+    "iss-notes/README.md",
+    "iss-notes",
+    "iss-notes/prova.md"
+  ]
+}
