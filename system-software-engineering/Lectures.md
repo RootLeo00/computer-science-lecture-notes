@@ -257,4 +257,12 @@ lez 11 30 marzo 2023
 -  siccome la request è bloccante, il ping se non viene ricevuto allora rimane bloccato. Dunque, come analista del problema, devo introdurre una nuova primitiva che abbia due parametri: 1. il contenuto del messaggio (la stringa ping) e il secondo il tempo del timeout. Se scatta il timeout allora posso scegliere se 1. dare un messaggio di errore e poi abortire 2. lanciare una exception (recommended)
 - quando ho fatto questa primitiva, poi la inserisco in una libreria 
 - #TODO in ProducerCaller.body() devo fare un test un po' più sofisticato: lascio che mandi per 3 volte il ping, e poi mi aspetto che ritornino 3 pong. Ma devo anche fare la situazione più complicata in cui a una certa non arrivi il pong (timeout). Per simularlo, posso fare che il Consumer al secondo ping non risponda.
+- il VRHLMovesInteractonSync fa una comunicazione sincrona
+- ci sarà da creare VRHLMovesInteractonAsync per fare comunicazione asincrona
+- ci sarà Interaction come interfaccia, che avrà sotto due sotto interfacce InteractionSync e InteractionAsync. InteractionSync viene  concretizzato da VrobotHLMovesInteractionSynch che poi sotto ha le varie concretizzazioni con le classi che implementano i vari protocolli (ad esempio VrobotHLMovesHTTPApache) 
+- guardando VrobotHLSupportFactory, per creare un supporto per la connessione di tipo X, istanzierò un oggetto di tipo Interaction, passandogli una istanza della factory XConnection. Quindi HTTPConnection sarà una concretizzazione di Connection. Interaction è una interfaccia. 
+- Appl1Core è un POJO e non un attore perchè non è un componente attivo: non crea un thread. E' un non-attore, che però è capace di inviare messaggi, ma questo perchè dentro ha un mitocondrio (VrobotHLMovesInteractionSynch) che è capace di inviare messaggi.
+- Moreover, un attore sarà in grado di geneticamente inviare e ricevere messaggi.
+- problema: non sappiamo come trovare dinamicamente un attore. Adeso devo sapere il suo ip statico
+- #TODO sprint3 completo con progetto che gira
 - 
