@@ -30,18 +30,6 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "31b95236fbe309b0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "system-software-engineering/Appl1-HTTPPingPongLeonelliCaterinaV0.md",
-                "mode": "source",
-                "source": false
-              }
-            }
           }
         ]
       }
@@ -172,8 +160,8 @@
   },
   "active": "f4758158e7ffeb3b",
   "lastOpenFiles": [
-    "system-software-engineering/Appl1-HTTPPingPongLeonelliCaterinaV0.md",
     "system-software-engineering/Lectures.md",
+    "system-software-engineering/Appl1-HTTPPingPongLeonelliCaterinaV0.md",
     "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV1.md",
     "system-software-engineering/Appl1FinalArchitecture.png",
     "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV0.md",

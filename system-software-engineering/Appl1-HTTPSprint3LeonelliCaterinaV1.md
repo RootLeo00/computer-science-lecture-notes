@@ -39,6 +39,7 @@ La fase di interpretazione dei comandi è affidata a _Appl1_ in quanto:
 
 ### altre problematiche
 - problema: non sappiamo come trovare dinamicamente un attore. Adesso devo sapere per forza il suo ip statico
+
 ### piano di lavoro
 Dall’analisi emerge l’opportunità di impostare il seguente piano di lavoro:
 
@@ -59,19 +60,20 @@ sviluppo della Appl1:
 8. sviluppo VrobotHLMovesInteractionSynch e VrobotHLMovesInteractionAsynch che sono concretizzazioni della interfaccia IVrobotMoves e che inviano i messaggi di comando con il protocollo scelto. In particolare:
 	1. VrobotHLMovesInteractionSynch, usa una comunicazione sincrona, con protocollo http
 	2. VrobotHLMovesInteractionAsynch, con supporto WebSocket
-	#TODO metodo step(time) in entrambe le classi
 
 ## Test plans
 
 ### testing locale
 1. creare una classe TestAppl1HTTPSprint3 con le funzioni già presenti in TestAppl1HTTPSprint2 per testare la comunicazione tra appl1 e il vrobot
-2. creare una classe TestCmdConsoleSprint3 per testare la comunicazione tra la console remota e appl1
-3. creare una classe TestSprint3 per testare la comunicazione tra cmd console, appl1 e vrobot
+2. #TODO creare una classe TestCmdConsoleSprint3 per testare la comunicazione tra la console remota e appl1
+3. #TODO creare una classe MainCmdConsoleSprint3 per testare la gui
+4.  #TODO creare una classe TestSprint3 per testare la comunicazione tra cmd console, appl1 e vrobot
 
 ## Project
 Il progetto è pubblicato al link: https://github.com/RootLeo00/sw-eng/tree/main/Appl1-HTTPSprint3
 
 ## Testing
+Le classi di test sono pubblicate al link: https://github.com/RootLeo00/sw-eng/tree/main/Appl1-HTTPSprint3/src/test/java
 
 
 ## Deployment
