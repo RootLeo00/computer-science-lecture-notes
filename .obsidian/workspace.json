@@ -13,7 +13,31 @@
             "state": {
               "type": "markdown",
               "state": {
+                "file": "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV1.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "107df932afc97684",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
                 "file": "system-software-engineering/Lectures.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "31b95236fbe309b0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "system-software-engineering/Appl1-HTTPPingPongLeonelliCaterinaV0.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +109,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "system-software-engineering/Lectures.md",
+                "file": "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV1.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +126,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "system-software-engineering/Lectures.md",
+                "file": "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +149,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "system-software-engineering/Lectures.md"
+                "file": "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV1.md"
               }
             }
           }
@@ -148,14 +172,15 @@
   },
   "active": "f4758158e7ffeb3b",
   "lastOpenFiles": [
-    "Untitled.md",
+    "system-software-engineering/Appl1-HTTPPingPongLeonelliCaterinaV0.md",
     "system-software-engineering/Lectures.md",
+    "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV1.md",
+    "system-software-engineering/Appl1FinalArchitecture.png",
+    "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV0.md",
     "system-software-engineering/README.md",
     "README.md",
-    "system-software-engineering/Appl1-HTTPPingPongLeonelliCaterinaV0.md",
     "system-software-engineering",
     "system-software-engineering/Pasted image 20230321170013.png",
-    "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV0.md",
     "system-software-engineering/Pasted image 20230328152258.png",
     "system-software-engineering/Pasted image 20230328145610.png",
     "system-software-engineering/Pasted image 20230328102341.png",
