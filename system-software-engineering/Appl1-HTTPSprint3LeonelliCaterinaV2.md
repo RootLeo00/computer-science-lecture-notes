@@ -2,7 +2,6 @@
 Nello [Appl1-HTTPSprint2](file:///home/leo/github/sw-eng/issLab23/iss23Material/html/Appl1-HTTPSprint2.html#appl1-httpsprint2), abbiamo costruito e testato un sistema che soddisfa i requisiti del core-businness in ambiente locale.
 
 ## Requisiti
-Rispetto allo sprint2, i nuovi obiettivi dello sprint3 sono:
 1.  Affrontare il progetto e la realizzazione della _CmdConsole_ remota.
 2.  Affrontare il progetto e la realizzazione di un sistema distribuito.
 
@@ -15,7 +14,8 @@ Rispetto allo sprint2, i nuovi obiettivi dello sprint3 sono:
 
 
 ### Architettura logica
-![[Appl1FinalArchitecture.png]]
+Architettura realizzata nello sprint2:
+![[arch_logica_sprint2.png]]
 
 ## Analisi problema
 
@@ -63,8 +63,8 @@ sviluppo della Appl1:
 	1. VrobotHLMovesInteractionSynch, usa una comunicazione sincrona, con protocollo http
 	2. VrobotHLMovesInteractionAsynch, con supporto WebSocket
 
-Dunque la nuova architettura logica risultante è:
-
+Dunque l'architettura logica risultante è:
+![[Appl1FinalArchitecture.png]]
 ## Test plans
 
 ### testing locale
@@ -81,8 +81,12 @@ Le classi di test sono pubblicate al link: https://github.com/RootLeo00/sw-eng/t
 
 
 ## Deployment
+Il software IT "Docker" è una tecnologia di containerizzazione pensata per la creazione e l'utilizzo dei container Linux. In questo modo si possono trattare i container come macchine virtuali modulari estremamente leggere, dato che il modello di deployment basato su immagini.
 
-
+Il docker container è disponibile eseguendo il comando:
+```
+docker pull rootleo00/iss:latest
+```
 
 ## Maintenance
 

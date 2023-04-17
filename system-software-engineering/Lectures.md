@@ -265,4 +265,12 @@ lez 11 30 marzo 2023
 - Moreover, un attore sarà in grado di geneticamente inviare e ricevere messaggi.
 - problema: non sappiamo come trovare dinamicamente un attore. Adeso devo sapere il suo ip statico
 - #TODO sprint3 completo con progetto che gira
-- 
+
+
+lez 12 martedì 4 aprile 2023
+- il pattern adapter non va bene perchè il gof dice che è un POJO, e a me serve  un ente attivo, cioè che riceva messaggi. Quindi mi server un server!
+- Gli abilitatori di comunicazione che oi abbiamo nel mercato sono Spring per Java, mentre Express per javascript. Un abilitatore di comunicazione deve poter avere una entità che ricdve mesaggi, ma anche poter inviare un messaggio a partire da un pojo.
+- Appl1 è un abilitatore: ha un server, ServerFactory, che è capace di ricevere, poi interpreta il messaggio ricevuto e chiamare i metodi di Appl1Core, quindi sa anche emettere messaggi. L'ente collante tra i messaggi ricevuti e la chiamata all'Appl1Core nello sprint3 è Appl1MsgHandler.
+- in StepAsynch si vede che un actor sarà message driven, in base ai messaggi che stanno nella coda delle richieste
+- è appl1cre che gestisce le azioni
+- #TODO dove mettere le callback 
