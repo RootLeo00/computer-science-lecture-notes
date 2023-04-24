@@ -274,3 +274,13 @@ lez 12 martedì 4 aprile 2023
 - in StepAsynch si vede che un actor sarà message driven, in base ai messaggi che stanno nella coda delle richieste
 - è appl1cre che gestisce le azioni
 - #TODO dove mettere le callback 
+
+
+
+lez 14 martedì 18 aprile
+- Interaction è una interfaccia che rende l'applicazione indipendente dalla logica applicativa 
+- il file delle WS non hanno una response, quindi la dobbiamo inserire noi !
+- nel mainLoop() la take è bloccante! Vuol dire che se la coda è vuota allora rimane in attesa di messaggi
+- nb: il robot non gira quando ricevo la collision, ma qunaod ho una step fail. Questo perchè se mi muovo alla collision, rischio di non aver finito lo step e quindi dicendogli prima di girare a sx, rischio di ricevere un not allowed.
+- la coda funziona così: arriva un messaggio al server che inoltra le info al msg handler. Il msg handler poi mette il messaggio NELLA CODA.
+- con gli attori non ho più RIFERIMENTI di attori ma NOMI di attori. Anche per quelli locali
