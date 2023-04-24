@@ -4,7 +4,8 @@
 
 ## Requisiti
 -   fare in modo che il robot si fermi per un tempo prefissato ( `2sec` ) ogni volta che esso viene rilevato da uno dei Sonar cablati nelle pareti della stanza;
--   prefigurare i tempi previsti per lo sviluppo e i tempi effettivi necessari per il completamento del sistema;
+-   prefigurare i tempi previsti per lo sviluppo e 
+- i tempi effettivi necessari per il completamento del sistema;
 -   indicare il modo con cui si ritiene opportuno distribuire il prodotto finale.
 
 ## Analisi dei requisiti
@@ -25,6 +26,7 @@ l'architettura logica è composta da tre entità principali:
 
 Refactoring della architettura logica utilizzando gli attori:
 ![[Pasted image 20230424135913.png]]
+
 ## Test plans
 Dall’analisi emerge l’opportunità di impostare il seguente piano di lavoro:
 1) realizzazione del sistema distribuito:
@@ -32,6 +34,10 @@ Dall’analisi emerge l’opportunità di impostare il seguente piano di lavoro:
 	- nel primo contesto inserisco 1 attore, nell'altro invece 2 attori
 		- connetto una command console al singolo attore del primo contesto, mentre collego due console per ogni attore nel secondo contesto
 ![[Pasted image 20230424140021.png]]
+
+### tempi e costi di testing
+- per realizzare quanto descritto nel piano di testing vanno impiegate al massimo 4 ore
+
 ## Project
 
 ## Testing
