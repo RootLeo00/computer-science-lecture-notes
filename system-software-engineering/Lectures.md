@@ -284,3 +284,29 @@ lez 14 martedì 18 aprile
 - nb: il robot non gira quando ricevo la collision, ma qunaod ho una step fail. Questo perchè se mi muovo alla collision, rischio di non aver finito lo step e quindi dicendogli prima di girare a sx, rischio di ricevere un not allowed.
 - la coda funziona così: arriva un messaggio al server che inoltra le info al msg handler. Il msg handler poi mette il messaggio NELLA CODA.
 - con gli attori non ho più RIFERIMENTI di attori ma NOMI di attori. Anche per quelli locali
+
+
+lez 15 giovedì 27 aprile
+- un attore ha un comportamento sia attivo (da ricezone di un messaggio dall'esterno) sia auto attivo (mandandosi da slo i messaggi), ma anche un comportamento proattivo che esegue azioni nel momento in cui nasce.
+- nel nostro modello il sonar è un ente attivo che quando parte fa le misure ed emette eventi. Un evento è per definizione una info emessa dalla sorgente senza dest.
+- il sonar sul robot è compreso in basicrobot.
+- il sonar sulla parete non può essere un active object perchè ha la sola feature di essere in un thread (è un pojo con thread), mentre l'actor ha la capacità innata di poter inviare messaggi in maniera pro attiva. Certamente un attore è anche un pojo con thread, ma ha altre cose oltre a quelle.
+- noi consideriamo la request mai bloccante (certo vuole una risosta ma non si blocca)
+- getpath invece è per forza una getpath() perchè voglio avere per forza una risposta. Il modello non ci implica che sia per forza bloccante, però potremmo a livello di applicazione renderla bloccante per i nostri comodi.
+- facendo fare lo stop ad appl e non al virtual robot violiamo il principio di singola responsabilità. Non può l'app avere la responsabilità di generare il comando di stop: fino ad adesso è la console che invia lo stop all'app che lo subisce. 
+- sonarobserver rimane in attesa di messagi di sonar nella coda. Appena arriva un messaggio di sonar, manda lo stop, aspetta 2 sec e poi invia un comando  di resume.
+- problema: cosa succede quando ho 2 resume (una dalla console e una dal sonarobserver) ?
+- problema: cosa succede se ho due console collegate con l'applicazione
+- dubbio: potrei discriminare i comandi da sto che arriva la console e stop che arrivano dal sonar: ad esempio mandare un stopSync per il sonar e uno stopAsync per la console. Problema: così dovrei per ogni sonar fare la sua stop (?)
+
+il nostro attore può inviare questi messaggi:
+dispatch:
+forward:
+emit: non ha un destinatario, è una info propagata a qualunque struttura del sistema in cui è inserito l'emettitore.
+emit-local event: manda eventi ma solo locale al contesto
+emit-stream event: 
+
+lez 16 giovedì 4 maggio
+- quando state == null allora sta in attesa
+- per entrare in uno stato iniziale ci vuole qualcuno che deve mandare un messaggio: sysstartcommand. 
+- 

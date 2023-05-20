@@ -1,6 +1,4 @@
 # LABORATORIO DI INGEGNERIA DEI SISTEMI SOFTWARE
-## Introduzione
-#TODO 
 
 ## Requisiti
 -   fare in modo che il robot si fermi per un tempo prefissato ( `2sec` ) ogni volta che esso viene rilevato da uno dei Sonar cablati nelle pareti della stanza;

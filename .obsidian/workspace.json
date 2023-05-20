@@ -4,47 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "532060ec64a7d241",
+        "id": "845d5028b917b4bc",
         "type": "tabs",
         "children": [
           {
-            "id": "3277799ac1f092d0",
+            "id": "c9cfe2776d86d2e5",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "system-software-engineering/Lectures.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "fbe890e76a597abc",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Appl1-SonarSprint1CaterinaLeonelliV0.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "740404b848dd2ecd",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "system-software-engineering/Appl1-HTTPPingPongLeonelliCaterinaV0.md",
+                "file": "embedded-systems/Sistemi Digitali - Riassunto.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -89,6 +64,14 @@
               "type": "starred",
               "state": {}
             }
+          },
+          {
+            "id": "4e1f7f3e55393b0d",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
           }
         ]
       }
@@ -110,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Appl1-SonarSprint1CaterinaLeonelliV0.md",
+                "file": "embedded-systems/Sistemi Digitali - Riassunto.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Appl1-SonarSprint1CaterinaLeonelliV0.md",
+                "file": "embedded-systems/Sistemi Digitali - Riassunto.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -150,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Appl1-SonarSprint1CaterinaLeonelliV0.md"
+                "file": "embedded-systems/Sistemi Digitali - Riassunto.md"
               }
             }
           }
@@ -171,25 +154,32 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "fbe890e76a597abc",
+  "active": "c9cfe2776d86d2e5",
   "lastOpenFiles": [
-    "system-software-engineering/Appl1-HTTPPingPongLeonelliCaterinaV0.md",
-    "system-software-engineering/Appl1FinalArchitecture.png",
-    "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV2.md",
-    "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV1.md",
-    "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV0.md",
-    "Appl1-SonarSprint1CaterinaLeonelliV0.md",
+    "Screenshot_2023-01-17_alle_14.23.52.png.md",
+    "embedded-systems/Sistemi Digitali - Riassunto.md",
+    "embedded-systems/Sistemi Digitali - Riassunto a4d66cbab3e84c17ac1a2addf86e38ae/Pasted image 20230520160308.png",
     "Pasted image 20230424140021.png",
     "Pasted image 20230424135913.png",
     "Pasted image 20230424135747.png",
+    "embedded-systems/Sistemi Digitali - Riassunto a4d66cbab3e84c17ac1a2addf86e38ae/Pasted image 20230520160550.png",
+    "Pasted image 20230520160256.png",
+    "Pasted.md",
+    "embedded-systems/Sistemi Digitali - Riassunto a4d66cbab3e84c17ac1a2addf86e38ae/Pasted image 20230520163454.png",
+    "embedded-systems/Sistemi Digitali - Riassunto a4d66cbab3e84c17ac1a2addf86e38ae/Pasted image 20230520162358.png",
+    "embedded-systems/Sistemi Digitali - Riassunto a4d66cbab3e84c17ac1a2addf86e38ae/Pasted image 20230520162230.png",
+    "embedded-systems/Sistemi Digitali - Riassunto a4d66cbab3e84c17ac1a2addf86e38ae/Pasted image 20230520162037.png",
+    "Sistemi Digitali - Riassunto a4d66cbab3e84c17ac1a2addf86e38ae/Screenshot_2023-01-17_alle_14.23.52.png.md",
     "system-software-engineering/Lectures.md",
-    "system-software-engineering/Pasted image 20230328152258.png",
+    "Sistemi Digitali - Riassunto a4d66cbab3e84c17ac1a2addf86e38ae",
+    "embedded-systems/Sistemi Digitali - Riassunto a4d66cbab3e84c17ac1a2addf86e38ae",
+    "embedded-systems",
+    "Appl1-SonarSprint1CaterinaLeonelliV0.md",
+    "system-software-engineering/Appl1-HTTPPingPongLeonelliCaterinaV0.md",
+    "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV2.md",
+    "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV1.md",
+    "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV0.md",
     "system-software-engineering/README.md",
-    "system-software-engineering/Pasted image 20230328145610.png",
-    "system-software-engineering/Pasted image 20230328102341.png",
-    "system-software-engineering/Pasted image 20230328102327.png",
-    "system-software-engineering/Pasted image 20230321170013.png",
-    "system-software-engineering/Pasted image 20230321165953.png",
     "README.md",
     "system-software-engineering",
     "temp",
@@ -202,7 +192,6 @@
     "Lez 1.md",
     "iss-notes",
     "iss-notes/README.md",
-    "iss-notes",
     "iss-notes/prova.md"
   ]
 }
