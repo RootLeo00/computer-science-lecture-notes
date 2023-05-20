@@ -382,8 +382,8 @@ Esempio: se si vuole leggere `arr[i]` di un array `arr`, anche i dati fino a `ar
 Data la possibilità di burst transfer, AXI è particolarmente indicato per le memorie, a differenza di AXI Lite, più indicato per le periferiche poiché necessita di meno logica.
 
 ![Esempio di burst R/W AXI.](Sistemi%20Digitali%20-%20Riassunto%20a4d66cbab3e84c17ac1a2addf86e38ae/Screenshot_2023-02-01_alle_12.50.32.png)
-
 Esempio di burst R/W AXI.
+
 AXI ha indirizzi a 32 bit e parallelismo configurabile (da 32 a 1024 bit), con un impatto significativo sulle performance.
 Il *clock* AXI è *settabile* dal designer del modulo.
 ![[Pasted image 20230520185516.png]]
@@ -417,6 +417,120 @@ NB: Comodo per segnali audio o immagini (pacchetti dati che hanno sempre la stes
 *HLS sta per “High Level Synthesis”*
 - Progettazione di moduli custom, ma in linguaggi di più alto livello (es. C/C++) rispetto ai linguaggi HDL
 - Più “accessibile” per software engineer con limitate conoscenze di “basso livello”.
+Si scrive un codice C, formato da un header file: parametri e altre cose da includere, e un file di codice vero e proprio dove si descrive ciò che la rete/algoritmo deve fare.
+Estensione .cpp, che consentono di definire tipi di dati custom con dimensione qualsiasi.
+**```Ap_tipodato.h ```**-> libreria che consente di definire qualsiasi tipo di dati con una dimensione scelta dall’utente. In questo modo, mediante "```
+ap_int.h```”, si possono definire tipi di dati con dimensione variabile. È possibile definire tipi signed e unsigned:
+•```ap_uint<5>``` unsigned a 5 bit
+•```ap_int<5>``` signed a 5 bit
+OSS: in questo caso al posto di allocare 8 bit per poi buttare via 3 bit, posso utilizzare direttamente 5 bit 
+**Funzione top function** -> funzione che si basa sul clock, e che può   chiamare/produrre altre funzioni. Nel caso in slide è una funzione void (che ha un led output). Vivado capisce se è un segnale di input o di output, in base alle operazioni che andiamo a fare con questa funzione (solo lettura, solo scrittura o entrambe) e definisce l’interfaccia ai morsetti del modulo che si sta progettando. 
+NB: noi nel codice non definiamo il clock -> lo capisce da solo il compilatore.
+**Volatile** -> è una direttiva di compilazione. Indica se una variabile sia o meno volatile, cioè serve per evitare che il compilatore faccia ottimizzazioni sulla variabile I/O, a più basso livello, scrivendo 2 volte sulla variabile si vedranno le due scritture. Lo scopo del codice è la descrizione, non l’ottimizzazione del codice.
+Esempio: se assegno ad una variabile un valore, allora il compilatore elimina la 1° assegnazione. Poi in un sistema HLS io devo controllare clock a clock che succede.
+Il C non nasce per descrivere l’hardware. Con HLS descrivo il funzionamento dell’hardware con un linguaggio noto ma che non nasce per questa funzionalità, vanno quindi introdotte delle modifiche al linguaggio.
+La funzione descrive al compilatore come generare la rete logica (sequenziale) e per fargli capire che cosa deve fare. L’obiettivo è di scrivere un codice che, trasferito all’interno dell’FPGA, sia il più veloce possibile: l’operazione deve terminare in un solo clock.
+
+### Testbench
+Un main che serve per verificare, con delle printf o con le uscite della rete, se una certa funzione fa quello che si vuole. Ad ogni iterazione che fa la funzione viene richiamata la funzione e vediamo il valore che deve restituire a video. Si può verificare che la funzione faccia ciò che si vuole con un
+valore di ritorno noto, cioè usando la return 0 (significa che la funzione ha fatto ciò che si voleva), anziché con valori stampati a video. Verifica che la logica sia corretta e tutti i segnali hanno un’evoluzione temporale ad ogni clock. Possiamo anche stimare ogni quanto tempo il modulo, realizzato in hardware, produce il risultato. È un file che si associa alla funzione che si va a realizzare. Si usa anche per generare forme d’onda.
+**Co-simulazione e forme d’onda**
+Dal testbench in C/C++ e dall’output della sintesi è possibile esaminare le forme d’onda. Questo è utile per capire cosa fa la rete realizzata osservando l’evoluzione temporale dei segnali sia interni che esterni. Questo si fa lanciando la co-simulazione (selezionando VHDL e tutte le tracce),
+questa produce file che possono essere visualizzati come forme d’onda. È utile per comprendere in modo più fine l’evoluzione della rete nel tempo. Per i nostri scopi non è essenziale. Se rispetta latency e interval siamo abbastanza certi che una volta importata in vivado funzionerà abbastanza
+tranquillamente.
+Codice RTL: come un codice HDL che descrive il funzionamento della rete nel tempo con una serie di assegnamenti. Premo export RTL e trasferisco in vivado il codice HLS.
+Mettiamo un range inferiore (ma non sotto i 10/20MHz come frequenza di clock).
+
+### Interfacce per porte
+Vivado mette a disposizione diversi protocolli per le interfacce:
+- **``ap_none``** – è il tipo di protocollo più semplice, non ha nessuna interfaccia di protocollo esplicito, nessun segnale di controllo addizionale, e nessun overhead hardware associato. Tuttavia, implica che il timing delle operazioni di input e output è indipendente e correttamente gestito
+	- **``ap_stable``** — Simile ad ap_none, non richiede segnali di controllo aggiuntivi o hardware apposito. La differenza è che ap_stable è inteso solo per input che non cambiano frequentemente che sono generalmente stabili(tranne a causa dei reset, come dati di configurazione). Gli input non sono costanti ma nemmeno richiedono di essere registrati.
+	- **``ap_hs``** – protocollo di ‘handshaking’, è un superset di ``ap_ack``, ``ap_vld``, ``ap_ovld``. Usato sia per le porte di input che di output, e mette in atto un processo di handshaking tra il produttore e l’utilizzatore di un dato; include anche le transizioni di validazione del dato e acknowledge. Per questo, richiede 2 porte di controllo e un overhead associato. È, comunque, un modo robusto di passare dati, senza la necessità di usare un timing esterno. Semplice, richiede pochi fili per la comunicazione, quindi è facile, veloce e affidabile. Non richiede overhead nella comunicazione. Utile per sincronizzare due moduli.
+		- ap_ack – Con questo protocollo si ha un comportamento differente per input e output: Per gli input, viene aggiunto un segnale di output acknowledge che viene settato alto nello stesso ciclo di clock in cui l’input è letto. Per gli output, è aggiunto un segnale di input acknowledge. Dopo ogni scrittura dalla porta di output, il progetto deve attendere che l’ACK di input deve essere TRUE (alto, 1) prima di poter proseguire l’esecuzione.
+		- ap_vld – Una porta addizionale è usata per validare un dato. Per le porte di input, è aggiunto un segnale di input che qualifica i dati di input come validi; per porte di output, è aggiunto un segnale di output che diventa TRUE nei clock cycles dove i dati di output sono validi. Si tratta di un segnale qualificante che definisce la validità di un segnale istante per istante
+			- **`` ap-ovld ``**– Come ``ap_vld`` ma implementato solo nelle porte di output, o nei segnali di output di una porta bidirezionale.
+- **``ap_memory``** – Permette di comunicare con le memorie, memory-based, supporta transazioni ad accesso random con la memoria, e può essere usato sia per porte di input, output e bidirezionali. L’unico tipo compatibile con questo protocollo sono gli array, che corrispondono alla struttura di una memoria. Richiede segnali di controllo per abilitare il clock e la scrittura, nonché una porta di indirizzo. Più oneroso da implementare e costoso da un punto di vista delle risorse, ma necessario in alcuni casi.
+	- **``bram``** - La stessa cosa di ap_memory con l'eccezione che quando si utilizza IP Integrator, le porte non vengono mostrate come singole porte, ma raggruppate in un'unica porta. Utili per comunicare con le memorie interne dell’FPGA (Bram).
+- **``ap_fifo``** - Il protocollo FIFO è compatibile con gli array, garantisce che siano accessibili in sequenza piuttosto che in ordine casuale. Non richiede alcuna informazione di indirizzo, e quindi è più semplice da implementare rispetto all'ap_memory. È usato sia per porte di input che di output, ma non per quelle bidirezionali. Le porte di controllo associate indicano se la coda della FIFO è piena o vuota, a seconda della direzione della porta, e assicurano che l'elaborazione sia “in stallo” per evitare il superamento o il sotto funzionamento.
+- **``ap_bus``** - Il protocollo ap_bus è un'interfaccia bus generica che non è legata a uno standard bus specifico, e può essere utilizzata per comunicare con bus bridge, che può quindi arbitrare con un bus di sistema. Supporta singole operazioni di lettura, singole operazioni di scrittura, e burst transfer, coordinati tramite una serie di segnali di controllo. Oltre a questa interfaccia bus generica, il supporto specifico per le interfacce bus AXI può essere integrato in una fase successiva, utilizzando una direttiva di sintesi delle interfacce:
+	- ``m_axi`` – Interfaccia per protocollo AXI master
+	- ``s_axilite`` – interfaccia per AXI Slave Lite
+	- ``axis`` – interfaccia per AXI stream
+![[Pasted image 20230520193025.png]]
+Non sempre per qualsiasi tipo di variabile si possono usare tutti i protocolli senza distinzione.
+
+### Direttive e ottimizzazione rete
+Il modo in cui vivado inserisce le direttive di comunicazione è con il comando #pragma.
+``pragma HLS INTERFACE ap_ctrl_hs port=return`` -> Con questa direttiva (specificata ella TOP function) eliminiamo i segnali di accesso al modulo esterno, atrimenti, la top function, di default, incapsula i segnali per controllare il modulo esterno (per resettarlo ap_rst, bloccarlo ``ap_start``, monitorarlo ``ap_done``, ``ap_ready``, ``ap_idle``).
+- **LATENCY**: È il numero di cicli di clock necessari al modulo per generare il risultato a fronte di un nuovo input;
+- **INTERVAL/ THROUGHPUT** (II or Initiation Interval): numero di cicli di clock necessari prima di poter elaborare un nuovo dato: quante volte possiamo richiamare il modulo nel codice.
+Latency e throughput/interval non sono la stessa cosa. Si pensi al DLX: nel caso del DLX sequenziale Latency e Interval sono coincidenti mentre nel caso del DLX pipelined la Latency è 5 clock (senza stalli) mentre l’Interval è pari a 1. Simili metodologie si applicano per rendere i moduli HLS più
+efficienti mediante delle opportune direttive.
+La simulazione non ci dice quanto tempo impiega il codice né quante risorse FPGA utilizza per eseguire tale conversione.
+
+### Ottimizzazione della rete in Vivado HLS
+Come migliorare le prestazioni della rete logica risultante dalla sintesi tramite  semplici modifiche al codice. L’operazione di modulo è un’operazione complessa e fa sì che il sintetizzatore debba allocare una rete per far fronte alle velocità del clock. Per velocizzare tutto, si può togliere l’op di modulo e
+fare un’op di confronto che è più semplice da eseguire e più veloce (ha una latenza inferiore).
+Richiamo il contatore ad ogni clock, inoltre la frequenza di clock incrementa. Dal target del clock di almeno 10ns possiamo raggiungerne una più elevata (6,53ns). Si tratta dello stesso codice, cambiato di una riga -> il modo in cui si scrive il codice ha un impatto cruciale sulla rete finale, in termini di
+capacità di elaborazione della rete e di risorse utilizzate.
+In Vivado l’opzione analisi ci aiuta da questo punto di vista. Sull’asse x c’è il clock. L’analisi ci fornisce la visuale temporale del tempo impiegato dell’operazione all’interno del codice.
+Ci sono anche altre direttive (oltre la #pragma) in c per poter scrivere questo tipo di codice (direttive di compilazione) per renderla il più possibile ottimizzata.
+![[Pasted image 20230520195125.png]]
+1. **PIPELINING** -> solitamente, permette di ridurre la Latenza con un overhead non particolarmente elevato in termini di risorse utilizzate. Consiste nel dividere in loop in vari stadi che possono essere eseguito in parallelo. Non bisogna modificare il codice, è sufficiente inserire il comando ``#pragma HLS PIPELINE II=1 ``(voglio porre l’interval ad 1, e quindi essere in grado di ricevere 1 nuovo dato di input ad ogni clock). Non modifica i LUT o FF o la struttura dell’FPGA.
+![[Pasted image 20230520195153.png]]
+	Nell'esempio viene mostrata una somma di array di 9 elementi--> 9 cicli di lettura + 1 ciclo finale di scrittura. Il risultato della somma è disponibile sull'uscita dopo 19 cicli (latency=19). Le iterazioni del loop sono 9 (tripcount=9) e ciascuna impiega 2 cicli di clock (1 per leggere, 1 per eseguire la somma)
+	OSS: è buona prassi mettere un tag ''loop:'' che indica il loop che si vuole mettere in pipeline.
+	OSS: se ci sono più loop innestati allora il pipelining va applicato a loop più interno, altrimenti il programma esplode.
+1. **LOOP UNROLLING** -> non è necessaria alcuna modifica al codice, è sufficiente una #pragma: ``#pragma HLS UNROLL factor=8``  <= Descrizione di una somma di un array di 9 elementi con Loop Unrolling (ci impiega 4 clock e serve replicare 4 sommatori). In questo caso factor=8 perchè si parla di un array di 8 element, ma bisognerebbe  partizionare l'array su varie zone di memoria: `#pragma HLS ARRAY_PARTITION variable=input_array complete dim=1`
+	Il programma deve supportare l’accesso multiplo ai dati: deve accedere  contemporaneamente a più elementi dell’array. Costringe ad utilizzare più risorse o componenti con più uscite-ingressi. Infatti, in questo esempio, i 4 sommatori ci saranno sempre: posso sì fare 4 operazioni contemporaneamente rispetto al pipelining vs mi servono 4 volte le risorse (in vivado si vede dal numero di FF e LUT).
+	Fattore unroll: Operazioni da eseguire in contemporanea per clock. Il loop unrolling è la forma più aggressiva del pipelining.
+![[Pasted image 20230520195610.png]]
+
+---
+# Progetti vari
+Fasi sviluppo di un progetto su Zynq:
+1. Creazione del dispositivo (C/C++) e validazione Vivado HLS
+2. Progettazione grafica in Vivado
+3. Sviluppo Software C/C++ per specifici OS (Vivado SDK)
+
+**Accensione di un led**
+GPIO: Dispositivo di input nella forma di un IP Core (sempra un registro di output)
+![[Pasted image 20230520201311.png]]
+Spazio degli indirizzi ZYNQ:
+- Memoria (Esterna) e spazio degli indirizzi (32 bit) sono condivisi tra: 
+	- ARM Cortex A9_0
+	- ARM Cortex A9_1
+	- FPGA
+	Dato che la memoria è condivisa, ci possono essere corse critiche --> a livello HW sono risolte perchè c'è un unico memory controller
+- Controllore singolo per la memoria (dentro il PS) e singolo spazio di indirizzamento per memoria e dispositivi (entrambi ARM e FPGA), che sono memory-mapped nel range: 0x00000000 -> 0xFFFFFFFF. Il fatto che ci sia un unico spazio di indirizzamento perchè cos' ARM e FPGA possono comunicare semplicemente scrivendo in memoria. OSS: i vari pin sono con indirizzi cablati dal produttore.
+- La logica programmabile (PL) (FPGA) è connessa al DDR memory controller attraverso porte High Performance HP 0, 1, 2, 3. Sono porte con elevato rate di trasferimento (GB/s), e permettono sia la lettura che la scrittura.
+NB: il GPIO è dentro l'FPGA, ma i led sono fuori da essa -> bisogna creare collegamento tra i pin FPGA e pin esterno -> si fa in vivado.
+
+**Progetto Vivado**
+Il progetto Vivado, controlla gli 8 LEDs attraverso un’interfaccia IP core (GPIO) AXI lite:
+![[Pasted image 20230520201917.png]]
+Un hub AXI interconnesso è inserito per permettere di aggiungere altri dispositivi AXI lite, oltre ad un modulo di reset controller per il reset del sistema (Process System Reset).
+
+### Progetto HLS di un modulo configurabile mediante protocollo AXI lite
+Mediante direttive (Vivado HLS) è possibile definire:
+- Protocollo del modulo/blocco (ap_start, etc)
+- Interfaccia per ciascuna porta di I/O
+		a. ap_none per il range_counter
+		b. ap_none per l’uscita led_output
+		c. ap_none per l’uscita output_value
+- Risorse
+		d. AXI lite per il range
+### Progetto HLS di un’interfaccia VGA
+La VGA è una semplice interfaccia che consente di pilotare un monitor analogico utilizzando dei segnali digitali. Sono supportate varie risoluzioni e frame rate.
+5 segnali:
+- 3 componenti di colore R, G, B
+- 2 segnali di sincronismo: V_SYNC (verticale) e H_SYNC (orizzontale). Indicano quando comincia e finisce una riga/colonna (dimensioni immagine a schermo). Vanno da 0 a 1, in (0,0) comincia una nuova immagine (punto in alto a sinistra nello schermo)
+I segnali digitali di RED, GREEN e BLUE a n bit sono convertiti in tre segnali analogici tra 0 e 0.7 V mediante un DAC (l’interfaccia è analogica ma il segnale di partenza lo creiamo digitale). Nel caso della zedboard, n=4 e il DAC è costituito da una serie di resistenze (4 bit per colore).
+![[Pasted image 20230520202312.png]]
+**Trasmissione di immagini da FPGA ad altro**
+Con VGA si passa per la memoria per evitare le difficoltà di sincronizzazione, dunque i dati(immagini) vengono salvati in memoria in modo da tenerli pronti per la visualizzazione appena la VGA li richiede.
+Utilizza un circular frame buffer per tenere traccia dell’ultimo frame depositato in memoria, utile per rilassare i vincoli tra controller VGA, ARM e FPGA.
+![[Pasted image 20230520202400.png]]
 
 ---
 
@@ -430,12 +544,18 @@ NB: Comodo per segnali audio o immagini (pacchetti dati che hanno sempre la stes
 - Progettate per sfruttare al meglio il parallelismo.
 
 ## La ZedBoard
-- Zynq FPGA
-- ARM CPU
-- 8 Led
-- 4 GB di address-space (32 bit)
-- Varie periferiche.
-
+La ZedBoard di base ha:
+- 8 led e 8 switch 
+- 5 pulsanti disposti a croce
+- 2 pulsanti addizionali
+- 5 Pin mode (porte di espansione): Si hanno a disposizione 5 pin-mode, A e B sono i più interessanti in quanto collegati con la FPGA. Mentre il pin connesso alla ARM serve per inviare comandi I2C e comandare la telecamera, inizializzandola e programmandola in maniera appropriata. Sono connettori che hanno 12 pin. 8 di questi sono per i segnali, poi su ogni pin mode ne abbiamo 2 riservati alla massa (GND), e due per l’alimentazione che è 3,3V. Ogni pixel della telecamera è codificato con 8 bit quindi servirono 3 pin mode.
+- Display led che si può comandare attraverso lo Zynq.
+- Connettori per l’acquisizione di segnali audio.
+- Connettore HDMI e il relativo controller
+- Oscillatore (che è un clock a 100MHz) che genera segnali a frequenza programmabile.
+- Scheda Ethernet utilizzabile attraverso una semplice libreria, che si usa per trasmettere le immagini elaborate in FPGA in streaming
+- Convertitore digitale e anche un connettore sulla dx che consente di comunicare direttamente con il pin dello Zynq in totale libertà. Nel progetto serve indicare come connettere i segnali ai pin collegati ad oggetti già presenti nella scheda stessa. 
+- Ci possiamo scrivere anche con vivado HLS e progettare un controllore per inviare segnali ad un monitor o ad un connettore VGA.
 ![La celeberrima ZedBoard/Zynq.](Sistemi%20Digitali%20-%20Riassunto%20a4d66cbab3e84c17ac1a2addf86e38ae/Screenshot_2023-02-08_alle_17.55.31.png)
 La celeberrima ZedBoard/Zynq.
 
