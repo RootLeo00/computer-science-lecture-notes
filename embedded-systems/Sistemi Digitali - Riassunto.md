@@ -1,4 +1,4 @@
-
+**
 Created: January 12, 2023 6:15 PM
 Tags: Embedded Systems, University, University Notes
 Useful Link: https://virtuale.unibo.it/
@@ -31,7 +31,7 @@ Queste tecniche però introducono fonti di ulteriore complessità
 ## Strategie Hardware per Velocizzare l’Esecuzione
 ### 1) Aumentare la frequenza della CPU
 - 😃non c'è problema di data dependency  
-- ☹️ più consumo batteria 🔋  |   $\small pwr \propto (clock)^2$ 
+- ☹️ più consumo batteria 🔋  |   $\small pwr \propto (clock)^2$
 ### 2) Sfruttare pipelining
  Si tratta di eseguire multiple istruzioni in maniera concorrente, ognuna in un diverso stadio di esecuzione (dunque, in pratica *non* è in parallelo).
  - ☹️ Questa implementazione richiede dei componenti addizionali
@@ -63,8 +63,8 @@ Usabile quando:
 Si sfrutta il fatto che la dimensione dei Multimedia Register (MM) è `N` volte la dimensione del dato.
 Accesso ai dati → un’istruzione può caricare più operandi (packed data).
 Processamento → una singola operazione è applicata a più operandi.
-> 		The larger the MM size, the higher the speedup
-		$\small groups\_of\_N\_data \implies N\_factor\_speedup - (un)packing\_time$
+The larger the MM size, the higher the speedup
+$\small groups\_of\_N\_data \implies N\_factor\_speedup - (un)packing\_time$
 
 In theory, fitting and processing groups of N data would allow for an N factor speed-up
 compared to conventional scalar code (single instruction single data) execution
@@ -154,10 +154,10 @@ latency) is sometimes mandatory.
 In this case, there are devices, such as modern FPGAs, that allows for tailoring the
 architecture to specific constraints/requirements, losing, on the other hand, the flexibility
 of a general-purpose approach.
-<aside>
+ 
 💡 Le FPGA possono essere usate anche per questo scopo: creare architetture parallele che rispettino certi vincoli e requisiti, perdendo, dall’altro lato, la flessibilità di un approccio genaral purpose.
 
-</aside>
+  
 
 Per non perdere l'approccio general-purpose, parallel devices serve as accelerators invoked by one or more threads running on a conventional CPU to achieve specific tasks efficiently. This strategy allows taking advantage of high-performance computing capabilities (accelerator) with the flexibility of conventional general-purpose CPU-based systems
 ![[Pasted image 20230520163454.png]]
@@ -211,11 +211,11 @@ Esistono molti modelli, produttori e tecnologie di FPGA. In generale, i due aspe
     2. *Flash* memories
     3. *SRAM* (Static RAM) - perde memoria quando si spegne, ma in pochi ms viene ricaricato all’accensione.
 
-<aside>
+ 
 💡 **Perché i fusibili al giorno d’oggi?**
 In alcuni contesti avere una memoria non è consigliato. Ad esempio, nel settore aerospaziale → bit flip possibili per le radiazioni nello spazio. Un altro esempio è quando non si vuole correre il rischio che il codice venga copiato illecitamente, cosa possibile se è salvato in una memoria. Infatti, non è possibile “estrarre la disposizione dei fusibili” andando a vedere connessione per connessione se il “filo” è stato interrotto o no.
 
-</aside>
+  
 
 ### Struttura CLB
 *L’unità elementare dei CLB è la cella logica* (*Logic Cell*, *LC*).
@@ -230,10 +230,10 @@ Struttura Logic Cell:
     - “EPROM il cui IN rappresenta l’address del dato da mandare in OUT”
 - **FFD** → parte sequenziale sincrona
 - **Mux** → per poter bypassare l’FFD (solo per reti combinatorie). Serve per decidere se utilizzare solo l’uscita della LUT o anche il Flip-Flop-D.
-<aside>
+ 
 💡 LUT e FFD possono essere sfruttati come memoria (RAM/Shift Register), molto piccola e quindi molto veloce.
 
-</aside>
+  
 
 ### Gerarchia di Cache
 Secondo quanto visto, si ha quindi la seguente gerarchia di cache:
@@ -253,10 +253,10 @@ Schema di una FPGA. Tanti CLB interconnessi, con BRAM, moltiplicatori e (anche s
 Le celle logiche sono raggruppate in Slices, e più slices interconnesse vanno a formare un CLB. Si possono creare retroazioni tra CLB o slice ma non si possono realizzare reti asincrone, solo sincrone e sequenziali.
 La Cella Logica può essere riprogrammata in vari modi (shift-register o una memoria RAM distribuita ad esempio). Il compilatore sceglie le connessioni tra CLB, il programmatore produce il codice di configurazione(bitstream) che fa in modo che il compilatore renda la rete veloce, che occupi meno CLB possibili e di massimizzare le performance.
 Se la FPGA è occupata all’80-90% bisogna fermarsi, altrimenti ci si impiegherà troppo tempo per realizzare il codice di configurazione oppure otterranno performance ridotte.
-<aside>
+ 
 ⚠️ Attenzione, le connessioni tra i CLB sono molte, ma non infinite. Inoltre, problematiche sorgono dal fatto che diversi percorsi introducono diversi ritardi di propagazione.
 
-</aside>
+  
 
 ### Clock nelle FPGA
 Ogni FPGA ha almeno 1 segnale di **clock**. In genere, vi è 1 segnale per ogni unità funzionale
@@ -272,9 +272,9 @@ Per generare clock a una data frequenza si usano **PLL** (*Phase-Locked Loop*) o
 
 Skew e jitter non sono problemi mutualmente esclusivi.
 
-<aside>
+ 
 💡 Nonostante la frequenza di clock non elevata, l’elevato grado di customizzazione e parallelismo ricavabile con l’utilizzo di una FPGA permette di poter competere, e spesso superare, le CPU General-Purpose nell’esecuzione di task specifici. Il tutto consumando relativamente poca energia grazie alla ridotta frequenza di funzionamento. Dunque, per poter essere competitiva, nonostante le sue basse frequenze, è necessario configurarla in modo da ottenere il parallelismo più alto
-</aside>
+  
 
 ## IP-Core: librerie hardware
 IP-Core sta per *Intellectual Property Core*, ed è:
@@ -284,14 +284,14 @@ IP-Core sta per *Intellectual Property Core*, ed è:
     - Altri sviluppati da terzi
 - Come il sw, può essere copiato (l’approccio SRAM è il più vulnerabile)
 
-<aside>
+ 
 💡 Alcuni IP-Core di uso comune sono:
 
 - DCM o PLL per gestire il clock
 - Memory Controllers per gestire i trasferimenti coi dispositivi esterni di memoria
 - SERDES per la conversione serie/parallelo di segnali ad alta intensità
 - Communication controller: dispositivi per gestire i trasferimenti ad alta larghezza di banda (10/100/1000 GB Ethernet).
-</aside>
+  
 
 ---
 
@@ -302,7 +302,7 @@ IP-Core sta per *Intellectual Property Core*, ed è:
 ## I2C
 - Protocollo degli anni ‘80 **semplice** e **leggero**, motivo per cui si usa ancora
 - seriale
-- **Master/slave**
+- Master/slave
 - Address a 7 bit (+ 1 bit per R/W), quindi riusciamo ad indirizzare 128 dispositivi (compreso il master)
 - Usa solo 2 fili → clock (**SCL**) e dati (**SDA**)
 - SPI è un protocollo simile, ma con 4 fili.
@@ -372,12 +372,12 @@ Caratteristiche comuni a AXI e AXI-Lite:
 **AXI**
 Caratteristiche chiave: *master/slave*, *indirizzi a 32 bit*, ***parallelismo*** dati configurabile (tra 32 e 1024 bit), ***burst transfer***, segnali di controllo (*ACK*).
 
-<aside>
-💡 ****************************Burst Transfer****************************
+ 
+💡 Burst Transfer
 Trasferimento (R o W) in sequenza di blocchi contigui.
 Fino a 256 trasferimenti in un unico ciclo di clock (o clock allungato) in indirizzi diversi (ma contigui) immettendo un solo indirizzo. Avviene sia in lettura che in scrittura e trasferisce i dati IN SEQUENZA.
 Esempio: se si vuole leggere `arr[i]` di un array `arr`, anche i dati fino a `arr[i+N]` saranno letti → indirizzo di lettura emesso ogni `N` cicli 💥.
-</aside>
+  
 
 Data la possibilità di burst transfer, AXI è particolarmente indicato per le memorie, a differenza di AXI Lite, più indicato per le periferiche poiché necessita di meno logica.
 
@@ -560,7 +560,7 @@ La ZedBoard di base ha:
 La celeberrima ZedBoard/Zynq.
 
 ## La Board PYNQ
-Una board molto simile alla Zedboard, con la particolarità di avere uno stack software tale da permetterci di **interagire in Python** con la parte di ********************************************logica riconfigurabile.********************************************
+Una board molto simile alla Zedboard, con la particolarità di avere uno stack software tale da permetterci di **interagire in Python** con la parte di logica riconfigurabile.
 
 ![Schema della PYNQ.](Sistemi%20Digitali%20-%20Riassunto%20a4d66cbab3e84c17ac1a2addf86e38ae/Untitled.png)
 Schema della PYNQ.
@@ -573,16 +573,16 @@ Allo strato più basso dello stack si trova la logica riconfigurabile dell’FPG
 Più in alto nello stack si trovano dei moduli Python ad-hoc e infine, a livello applicativo, si possono addirittura scrivere dei Notebook con Jupyter.
 
 ### Gli Overlay
-Il Processing System può demandare l’esecuzione di alcune funzioni alla Programmable Logic attraverso la chiamata di specifiche librerie hardware chiamate ****************Overlay****************. Queste possono sia accelerare funzionalità software, sia implementare funzionalità di più basso livello letteralmente mappate sull’hardware e richiamate poi dal processore. 
+Il Processing System può demandare l’esecuzione di alcune funzioni alla Programmable Logic attraverso la chiamata di specifiche librerie hardware chiamate Overlay. Queste possono sia accelerare funzionalità software, sia implementare funzionalità di più basso livello letteralmente mappate sull’hardware e richiamate poi dal processore. 
 
 Questo può essere utile per far eseguire all’FPGA determinate parti di codice che possono essere ben parallelizzate. Non si delega l’esecuzione ad un linguaggio più efficiente, come ad esempio avviene con `ctypes` in Python, ma proprio ad un **hardware dedicato**!
 
 Si possono vedere gli overlay come **una vera e propria libreria software.** Infatti, gli overlay mettono a disposizione una signature.
 
-<aside>
+ 
 💡 Tramite il Processing System (ARM) è possibile eseguire operazioni direttamente sulla Programmable Logic (FPGA).
 
-</aside>
+  
 
 Gli overlay sono tipicamente scritti da esperti, ma i programmatori possono chiamarli via Python in modo trasparente, senza la necessità di conoscerne dei dettagli.
 
@@ -601,7 +601,7 @@ help(add_ip)
 
 Il metodo `help` stampa l’oggetto IP che viene estratto dall’overlay.
 
-Se si vuole, si può creare un ********************************driver specifico******************************** per l’overlay, che espone una chiamata `add` in modo tale da rendere più **trasparente** l’interazione con lo sviluppatore.
+Se si vuole, si può creare un driver specifico per l’overlay, che espone una chiamata `add` in modo tale da rendere più **trasparente** l’interazione con lo sviluppatore.
 
 Per farlo, semplicemente si crea un oggetto che eredita da `UnknownIP` e che definisce il metodo `add` con già cablati gli indirizzi a cui leggere e scrivere
 ```python
@@ -620,7 +620,7 @@ class AddDriver(DefaultIP):
 ```
 **N.B.:** gli indirizzi a cui scrivere e leggere sono dati dalla sintesi HLS.
 
-Ora si può **********************ricaricare l’**********************overlay, che non sarà più un oggetto di classe `UnknownIP` o `DefaultIP` e si può utlizzarne la chiamata `add`
+Ora si può ricaricare loverlay, che non sarà più un oggetto di classe `UnknownIP` o `DefaultIP` e si può utlizzarne la chiamata `add`
 ```python
 overlay = Overlay('/home/xilinx/tutorial_1.bit')
 
@@ -633,7 +633,7 @@ overlay.scalar_add.add(15,20) # 35
 - *Vivado* → design del progetto, creazione HDL wrapper
 - *Vivado SDK* → codice eseguito dall’ARM
 - *Vivado HLS* → creazione IP-Core custom
-In una evaluation board con una FPGA, tutto ciò che è esterno all’FPGA vera e propria, quando si programma la FPGA, è da considerarsi come esterno (e va dichiarato con `make_external`, anche se fisicamente sulla stessa board. **N.B.:** i LED, gli switch e i bottoni ************************sono esterni!************************
+In una evaluation board con una FPGA, tutto ciò che è esterno all’FPGA vera e propria, quando si programma la FPGA, è da considerarsi come esterno (e va dichiarato con `make_external`, anche se fisicamente sulla stessa board. **N.B.:** i LED, gli switch e i bottoni sono esterni!
 
 Quando si crea un progetto Vivado è necessario specificare la board sulla quale si vuole eseguire il progetto (es. Zedboard Zynq).
 
@@ -672,7 +672,7 @@ Vivado HLS fornisce diverse optioni di ottimizzazione. Due esempi notevoli (desc
 - Pipelining
 - Loop unrolling.
 
-<aside>
+ 
 💡 **Latency e Interval**
 
 - *Latency* - # cicli di clock necessari al modulo per generare il risultato
@@ -680,12 +680,12 @@ Vivado HLS fornisce diverse optioni di ottimizzazione. Due esempi notevoli (desc
 
 *Latency e interval **non** sono la stessa cosa!*
 
-</aside>
+  
 
-<aside>
+ 
 💡 **Ricordate?** Nel DLX pipelined riuscivamo ad avere (a meno di stalli) una latency di 5 clock ed un interval di 1 clock.
 
-</aside>
+  
 
 ### Cosimulazione
 Dal testbench e l’output della sintesi è possibile esaminare le forme d’onda, a patto di avere un software esterno di simulazione capace di leggere il file apposito con le forme d’onda.
@@ -751,7 +751,7 @@ Ogni livello aggiunge uno strato di elaborazione alla rete e:
 - Riceve in input dallo strato precedente
 - Manda in output allo strato successivo.
 
-Le NN vanno ********addestrate******** per trovare i migliori valori per i pesi (e il bias) per ogni neurone, per risolvere uno specifico task.
+Le NN vanno addestrate per trovare i migliori valori per i pesi (e il bias) per ogni neurone, per risolvere uno specifico task.
 
 ## Convolutional Neural Networks
 
@@ -780,7 +780,7 @@ Un problema che sorge è: *“cosa fare dei pixel della cornice”*? Dato che bi
 ## I Filtri Convoluzionali Nelle Reti Neurali
 I **filtri convoluzionali** sono da molti anni impiegati nelle applicazioni di fotoritocco, ad esempio per inserire dei filtri, sfocare immagini, eccetera. Questo perché ad ogni singolo kernel corrisponde un effetto finale diverso.
 
-Nelle reti neurali convoluzionali, soprattutto per l’elaborazione di immagini, si usano degli stadi in cui sono presenti **************************filtri a cascata************************** nell’ordine di grandezza delle centinaia. Questo perché esistono alcuni filtri in grado di porre in evidenza delle feature interessanti, come ad esempio i bordi dei soggetti particolarmente contrastati.
+Nelle reti neurali convoluzionali, soprattutto per l’elaborazione di immagini, si usano degli stadi in cui sono presenti filtri a cascata nell’ordine di grandezza delle centinaia. Questo perché esistono alcuni filtri in grado di porre in evidenza delle feature interessanti, come ad esempio i bordi dei soggetti particolarmente contrastati.
 
 Allora, si può invertire il compito e “chiedere” alla rete di **apprendere** un certo numero di kernel sulla base di un dataset che è fatto da immagine + ground truth value per costruire un modello in grado di predire che una certa immagine corrisponde ad una certa classe.
 
@@ -814,10 +814,10 @@ Supponendo che in uscita dalla NN si abbia l’output come distribuzione normali
 print("L'immagine è stata riconosciuta come un " + labels[np.argmax(out)])
 ```
 
-<aside>
+ 
 💡 Il metodo `np.argmax` di NumPy, dato un vettore, restituisce l’*indice* del valore massimo.
 
-</aside>
+  
 
 ---
 
@@ -880,10 +880,9 @@ Lo streaming dei pixel che viene generato da un sensore **non può essere fermat
 
 Si definisce **PIXEL_CLOCK** la frequenza con cui il sensore genera il singolo pixel, e **framerate** il numero di frame (immagini) che il sensore riesce a generare ogni secondo.
 
-<aside>
+
 💡 Osservazione: per mantenere lo stesso framerate aumentando, però, la risoluzione, il PIXEL_CLOCK deve diminuire.  $\small Px_{clk} \propto {framerate}^{-1}$
 
-</aside>
 
 Lo streaming dei pixel include, insieme ai veri e propri pixel, anche alcuni segnali riservati, ad esempio i valori 0,1,2,3. Questi valori, che si tolgono dai possibili valori del pixel, il dispositivo di acquisizione può interpretarli come segnali di **inizio linea** e **inizio frame**, ma anche come segnale di **pixel valido**.
 
@@ -902,7 +901,7 @@ Un esempio possibile di trasmissione è il seguente:
 
 # Python
 È un linguaggio sviluppato nei primi anni ‘90.
-- **Interpretato**: script  da dare in pasto ad un **interprete (**invece di compilazione in assembly ****o **bytecode** intermedio)
+- **Interpretato**: script  da dare in pasto ad un interprete (invece di compilazione in assembly o bytecode intermedio)
     
     Vantaggi:
     
@@ -917,7 +916,7 @@ Un esempio possibile di trasmissione è il seguente:
 - **Dynamically typed**
 - Possiede molte **librerie** per **Data Analysis** e **Machine Learning**, proprio perché gli esperti di altri settori come Data Science e Statistica tendono a lavorare con un linguaggio semplice da imparare come Python.
 
-<aside>
+ 
 💡 **Python vs C**
 
 | Feature | Python | C |
@@ -930,7 +929,7 @@ Un esempio possibile di trasmissione è il seguente:
 | Portabilità codice | Facile | Un po’ meno facile |
 | Deallocazione della memoria dinamica | c’è il garbage collector | va fatta a mano con primitive come la free(…) |
 | Sintassi | meaningful-whitespaces | Token speciali ; {, … |
-</aside>
+  
 
 ## Python 2.x vs Python 3.x
 La coesistenza tra la versione 2 (supporto cessato in Gennaio 2020) e la versione 3 continua da anni. I due linguaggi differiscono solamente per alcuni aspetti: quello più plateale, e che può portare a problemi se non se ne tiene conto, è la **divisione fra interi.**
@@ -951,7 +950,7 @@ pip3 install [package_name]
 ```
 
 ## L’Ambiente Virtuale
-È possibile, e anche ********************caldamente******************** **consigliato**, per ogni progetto Python creare **virtual environment**
+È possibile, e anche caldamente **consigliato**, per ogni progetto Python creare **virtual environment**
 ```bash
 virtualenv -python3 venv
 source venv/bin/activate
@@ -979,7 +978,7 @@ integer_height = int(height) # risultato: 180
 ## Le Collection
 ### Tuple
 Sono astrazioni di livello molto alto per gestire liste di elementi.
-- Collezioni **********************immutabili********************** di dati ****************separati da virgola,**************** eventualmente racchiuse tra parentesi tonde
+- Collezioni immutabili di dati separati da virgola, eventualmente racchiuse tra parentesi tonde
 ```python
 users = ('admin','andrea','lorenzo','giorgio')
 ```
@@ -1003,7 +1002,7 @@ my_dict = {
 ```
 
 ## Funzioni
-- Definibili con la parola chiave ******def******
+- Definibili con la parola chiave def
 ```python
 def pow(x, y=2): # 2 è valore di default per y
 		return x ** y
@@ -1016,7 +1015,7 @@ square = pow(2) # 4, viene usato il valore di default
 
 ## Scope
 - Tutte le **variabili definite all’interno di una funzione** rimangono **locali** ad essa e quindi non visibili all’esterno.
-- Si possono definire ed utilizzare ****************variabili globali****************, che sono tutte quelle variabili ************************************************************definite fuori da una funzione************************************************************.
+- Si possono definire ed utilizzare variabili globali, che sono tutte quelle variabili definite fuori da una funzione.
 ```python
 x = 655 # variabile globale
 
@@ -1029,7 +1028,7 @@ print(x + y) # 1312
 ```
 
 ## Oggetti
-Python consente di ********************************definire classi******************************** ed ******************************istanziare oggetti******************************.
+Python consente di definire classi ed istanziare oggetti.
 ```python
 class Person(object):
 		def __init__(self, name):
@@ -1042,11 +1041,11 @@ p1 = Person('Slim Shady')
 p1.introduce_yourself()
 ```
 
-Il ************************costruttore************************ si indica con il ********************************metodo riservato******************************** `___init___` , che viene invocato ogni volta che si istanzia un nuovo oggetto. 
+Il costruttore si indica con il metodo riservato `___init___` , che viene invocato ogni volta che si istanzia un nuovo oggetto. 
 
 La parola chiave `self` è analoga al `this` Java, e permette di referenziare l’oggetto su cui si sta invocando il metodo (costruttore incluso).
 
-********************************************************************************Non è possibile definire più costruttori********************************************************************************, ma usando i valori di default non ve ne è la necessità.
+Non è possibile definire più costruttori, ma usando i valori di default non ve ne è la necessità.
 
 ## NumPy
 Scientific computation library. Offre molte utilities per gestire array n-dimensionali omogenei (dati dello stesso tipo, default `f64`). Ciò che accomuna tutte le possibilità di utilizzo che ci offre numpy è quello di usare **strutture dati n-dimensionali**. Essendo scritta prevalentemente in C, è piuttosto ottimizzata.
@@ -1054,7 +1053,7 @@ Scientific computation library. Offre molte utilities per gestire array n-dimens
 ### Strutture Dati N-Dimensionali
 **Creazione** array:
 - Passando una lista
-    - Di default il tipo di dato sarà un `np.float64` . Importante: i tipi di dato devono essere assolutamente ******************omogenei******************
+    - Di default il tipo di dato sarà un `np.float64` . Importante: i tipi di dato devono essere assolutamente omogenei
     ```python
     list_of_values = [3.141, 2.718, 1.414]
     x = np.array(list_of_values)
@@ -1072,7 +1071,7 @@ Scientific computation library. Offre molte utilities per gestire array n-dimens
     my_identita = np.eye((2,2), dtype=np.int32) # [[1 0], [0 1]]
     ```
 
-Ci sono almeno due modi per **inizializzare** un numpy array ****ad un valore *costante*
+Ci sono almeno due modi per **inizializzare** un numpy array ad un valore *costante*
 ```python
 all_fortytwo = np.full((2,2), 42) # [[42. 42.], [42. 42.]]
 
@@ -1081,7 +1080,7 @@ all_fortytwo_v2 = np.ones((2,2))*42
 Ogni array ha degli attributi (es. `dtype`, `shape`, …).
 
 ### Espansione e Rimozione Delle Dimensioni di un Array
-Visualizzare la ********shape******** è importantissimo per verificare che un’operazione tra numpy array sia concessa!
+Visualizzare la shape è importantissimo per verificare che un’operazione tra numpy array sia concessa!
 ```python
 x = np.array([2.,5.,3.]) 
 y = np.ones((2,4,1,2,3))
@@ -1089,9 +1088,9 @@ y = np.ones((2,4,1,2,3))
 print(x.shape) # (3,)
 print(y.shape) # (2, 4, 1, 2, 3)
 ```
-La somma tra i due array di cui sopra è difficile da visualizzare. Si può immaginare che sia **************************element-wise**************************, ma ciò avrebbe senso solo se le shape dei due array fossero esattamente identiche. Numpy, cercherà in ogni modo di “far saltare fuori” una possibile somma tra due array, ma non garantisce la buona riuscita o che il risultato sia semanticamente sensato.
+La somma tra i due array di cui sopra è difficile da visualizzare. Si può immaginare che sia element-wise, ma ciò avrebbe senso solo se le shape dei due array fossero esattamente identiche. Numpy, cercherà in ogni modo di “far saltare fuori” una possibile somma tra due array, ma non garantisce la buona riuscita o che il risultato sia semanticamente sensato.
 
-Dato un array, si può cambiare la sua forma (aggiungere dimensioni, rimuovere un asse, rimuovere gli assi di dimensione 1, ecc..), l’******************************************************espansione delle dimensioni****************************************************** si effettua con il metodo `expand_dims`
+Dato un array, si può cambiare la sua forma (aggiungere dimensioni, rimuovere un asse, rimuovere gli assi di dimensione 1, ecc..), l'espansione delle dimensioni si effettua con il metodo `expand_dims`
 
 Dato un array `x`
 ```python
@@ -1143,7 +1142,7 @@ assert x_y.shape == (5,3)
 ```
 
 ### Funzionalità Matematiche Base di NumPy
-****************************************************************Somma e sottrazione element-wise**************************************************************** tra array di numpy sono forniti in modo molto trasparente quando le shape tra i due vettori sono identiche. Queste operazioni vengono eseguite in **maniera molto efficiente**.
+Somma e sottrazione element-wise tra array di numpy sono forniti in modo molto trasparente quando le shape tra i due vettori sono identiche. Queste operazioni vengono eseguite in **maniera molto efficiente**.
 ```python
 all_sevens = np.full((2,2),7)
 all_ones = np.ones((2,2))
@@ -1154,21 +1153,21 @@ assert np.array_equal(all_eights, np.full((2,2),8)
 all_sixes = all_sevens - all_ones
 assert np.array_equal(all_sixes, np.full((2,2),6)
 ```
-Potremmo voler sommare o sottrarre elementi che ****************************non hanno la stessa shape****************************, ad esempio sommare un array con uno **scalare**
+Potremmo voler sommare o sottrarre elementi che non hanno la stessa shape, ad esempio sommare un array con uno **scalare**
 ```python
 y = 1 # scalare
 
 all_eights_broadcasted = all_sevens + y
 assert np.array_equal(all_eights_broadcasted, all_eights)
 ```
-Quello che fa NumPy sotto è fare broadcasting e quindi **********************************************espandere la shape di `y`** per farla matchare con quella dell’altro array. Tutto questo vale anche per la sottrazione.
+Quello che fa NumPy sotto è fare broadcasting e quindi espandere la shape di `y` per farla matchare con quella dell’altro array. Tutto questo vale anche per la sottrazione.
 
 N.B.: il **broadcasting non è sempre possibile**.
 
-<aside>
-💡 Due shape sono compatibili per il broadcasting **se sono identiche** oppure se differiscono tra di loro **per una sola dimensione** che deve essere ****1**** per una delle due shape.
+ 
+💡 Due shape sono compatibili per il broadcasting **se sono identiche** oppure se differiscono tra di loro **per una sola dimensione** che deve essere 1 per una delle due shape.
 
-</aside>
+  
 
 Sono compatibili, ad esempio, le seguenti coppie di shape:
 - `(4, 2, 3)` e `(4, 1, 3)`
@@ -1179,9 +1178,9 @@ Qualora una coppia di shape non sia compatibile con il broadcasting, Python lanc
 
 Ci si può far furbi e rendere una coppia di shape compatibile con una `expand_dims` 😎
 
-Anche la **********************moltiplicazione element-wise********************** è possibile con Numpy tramite il metodo `np.multiply`.
+Anche la moltiplicazione element-wise è possibile con Numpy tramite il metodo `np.multiply`.
 
-Il prodotto **********************************riga per colonna********************************** tra due matrici, invece, è eseguibile con `np.matmul`.
+Il prodotto riga per colonna tra due matrici, invece, è eseguibile con `np.matmul`.
 
 **Operazioni** sugli array:
 - *Somma/sottrazione* con `+/-` grazie all’operator overloading
@@ -1204,7 +1203,7 @@ Diversi moduli per Python permettono questa possibilità, il più semplice è `c
 import ctypes
 ```
 
-Con `ctypes`, si fa uso di ************************************librerie dinamiche************************************, le quali corrispondono a sorgenti con estensione `.dll` su Windows e a ********************************shared libraries******************************** in ambiente GNU/Linux con estensione `.so`.
+Con `ctypes`, si fa uso di librerie dinamiche, le quali corrispondono a sorgenti con estensione `.dll` su Windows e a shared libraries in ambiente GNU/Linux con estensione `.so`.
 
 Si crea una funzione che ci **restituisce una struttura dati di tipo** `void` custom in C, in un file che chiamato, ad esempio, `my_library.c`. Definire gli argomenti come puntatori a void permette di evitare di definire delle strutture interne alla funzione, acquistando in efficienza.
 ```c
@@ -1309,9 +1308,9 @@ Architettura dello stack Android.
 
 ## Stack Android
 - **Applications** → livello più alto dello stack. Le applicazioni sono generalmente sviluppate in Java/Kotlin
-- **Application Framework** → fornisce le classi usate per sviluppare applicazioni Android (API di vario tipo) come l’**********************************************Activity Manager********************************************** (per il controllo del ciclo di vita dell’applicazione) ********************************************************************************************o il ******View System****** (per controllare l’interfaccia grafica utente).
+- **Application Framework** → fornisce le classi usate per sviluppare applicazioni Android (API di vario tipo) come l'Activity Manager (per il controllo del ciclo di vita dell’applicazione) o il View System (per controllare l’interfaccia grafica utente).
 - **Libraries** → Librerie che implementano la maggior parte delle Java libraries (accesso a database `android.database`, al sistema operativo `android.os`, ecc…
-- **Android Runtime** → JVM modificata pensata per il mobile, fino alla versione 5.0 ********Lollipop****************,******** era la ************Dalvik************, ora la JVM si chiama ******Art******.
+- **Android Runtime** → JVM modificata pensata per il mobile, fino alla versione 5.0 Lollipop, era la Dalvik, ora la JVM si chiama Art.
     - Ogni app gira nella propria VM.
 
 ## CameraX API
@@ -1424,7 +1423,7 @@ $$
     - Addestrati con TensorFlow “normale” su dispositivi “potenti”
     - Portabile su mobile con la versione Lite.
 
-<aside>
+ 
 💡 **Perché “Tensor” Flow?**
 
 Un tensore è un array multidimensionale:
@@ -1433,9 +1432,9 @@ Un tensore è un array multidimensionale:
 - 1-D → vettore
 - 2-D → matrice
 - 3-D → “array di matrici”.
-</aside>
+  
 
-<aside>
+ 
 💡 **Immagini Come Tensori**
 
 Un’immagine RGB può essere vista come un tensore 3-D → una matrice `altezza x larghezza` per ognuno dei tre canali colore.
@@ -1446,7 +1445,7 @@ Spesso, nei framework di deep learning le immagini vengono trattate in fase di a
 2. Canale R
 3. Canale G
 4. Canale B.
-</aside>
+  
 
 Il framework, durante l’addestramento, ad ogni iterazione non agisce su un dato (ad esempio un’immagine), ma su un batch (insieme) di `K` dati, con `K` minore del numero totale di dati in input:
 
@@ -1455,10 +1454,10 @@ Il framework, durante l’addestramento, ad ogni iterazione non agisce su un dat
 ### Grafo Computazionale
 La rete può essere vista come un grafo che in ogni pass viene percorso in una sola direzione (nel forward pass in avanti, nel backward all’indietro), in cui ogni nodo è uno stadio di elaborazione.
 
-<aside>
+ 
 💡 In TensorFlow, un grafo viene definito ogni qual volta si scrive nel codice un**’operazione tra tensori**.
 
-</aside>
+  
 
 Il grafo:
 - Specifica che operazioni eseguire (”come fluiscono i tensori”)
@@ -1562,13 +1561,13 @@ print("Test accuracy:", score[1])
 ```
 
 ## PyTorch
-Si tratta di un framework attualmente supportato da **Meta AI**, proposto nel 2016 in sostituzione a **********Torch**********. PyTorch ha esteso il suo predecessore fornendo il supporto a Python, a differenza di Torch che utilizzava il linguaggio di scripting Lua. PyTorch è installabile via `pip`.
+Si tratta di un framework attualmente supportato da **Meta AI**, proposto nel 2016 in sostituzione a Torch. PyTorch ha esteso il suo predecessore fornendo il supporto a Python, a differenza di Torch che utilizzava il linguaggio di scripting Lua. PyTorch è installabile via `pip`.
 
-Supporta la creazione di un ****************************grafo dinamico****************************, anticipando quello che poi sarebbe diventato TensorFlow 2.x.
+Supporta la creazione di un grafo dinamico, anticipando quello che poi sarebbe diventato TensorFlow 2.x.
 
 Anche PyTorch supporta una libreria per dispositivi mobili chiamata `torchscript`
 
-Il grafo computazionale di PyTorch è del tutto analogo a quello di TensorFlow; consente quindi di seguire il flusso dei dati nelle due direzioni di **************************forward step************************** e ******************************back-propagation******************************.
+Il grafo computazionale di PyTorch è del tutto analogo a quello di TensorFlow; consente quindi di seguire il flusso dei dati nelle due direzioni di forward step e back-propagation.
 
 Anche qui, la struttura dati fondamentale è il `Tensor`
 ```python
@@ -1579,7 +1578,7 @@ print(a + b) # Tensor([7.])
 
 a.shape # Torch.Size([1])
 ```
-A differenza di TensorFlow, **non** si ha a disposizione un frontend come **********Keras**********, ma sono predisposti dei metodi di `torch.nn` per realizzare i vari layers
+A differenza di TensorFlow, **non** si ha a disposizione un frontend come Keras, ma sono predisposti dei metodi di `torch.nn` per realizzare i vari layers
 ```python
 nn.Conv2D(in_channels, out_channels, kernel_size)
 nn.AvgPool2D(kernels_size)
@@ -1602,21 +1601,21 @@ class Model(nn.Module):
 ```
 
 ### Layer di Normalizzazione
-Ciò che non è mostrato da Keras, da PyTorch viene palesato. Alcuni livelli si comportano diversamente in base alla fase in cui ci si trova (training, testing, evaluating, prediction); per esempio, alcuni layers che si occupano di ************************normalizzare************************ l’output del layer precedente (per far ricadere tutti i risultati all’interno di una distribuzione di probabilità omogenea) **************accumulano delle statistiche************** durante la fase di ****************training****************, li aggiustano e li mantengono così quando il training è finito.
+Ciò che non è mostrato da Keras, da PyTorch viene palesato. Alcuni livelli si comportano diversamente in base alla fase in cui ci si trova (training, testing, evaluating, prediction); per esempio, alcuni layers che si occupano di normalizzare l’output del layer precedente (per far ricadere tutti i risultati all’interno di una distribuzione di probabilità omogenea) accumulano delle statistiche durante la fase di training, li aggiustano e li mantengono così quando il training è finito.
 
-Grazie a questi livelli è possibile chiamare i metodi `train()` ed `eval()` ****************************************sullo stesso modello****************************************.
+Grazie a questi livelli è possibile chiamare i metodi `train()` ed `eval()` sullo stesso modello.
 
 ---
 
 # Mobile Deep Learning
-Nell’ambito dei dispositivi mobili, non vi è interesse a cercare di avere efficienza in fase di training, dato che di solitamente viene eseguito su hardware molto performante (non su mobile). L’interesse maggiore piuttosto è che la rete neurale, una volta caricata, sia efficiente in fase di ******inferenza******
+Nell’ambito dei dispositivi mobili, non vi è interesse a cercare di avere efficienza in fase di training, dato che di solitamente viene eseguito su hardware molto performante (non su mobile). L’interesse maggiore piuttosto è che la rete neurale, una volta caricata, sia efficiente in fase di inferenza
 
 ## TensorFlow Lite
-Mette a disposizione un **********************sottoinsieme delle funzionalità di TensorFlow**********************, con una serie di tool di ottimizzazione per:
-1. **Convertire un modello** TensorFlow in un formato ****equivalente**** ma ottimizzato per mobile
+Mette a disposizione un sottoinsieme delle funzionalità di TensorFlow, con una serie di tool di ottimizzazione per:
+1. **Convertire un modello** TensorFlow in un formato equivalente ma ottimizzato per mobile
 2. **Quantizzare** il modello per renderlo più efficiente e veloce, **minimizzando** la perdita di accuratezza
 
-Per eseguire il ******************porting del modello****************** su mobile, la prima fase è la conversione della rete TF nel formato `.tflite`
+Per eseguire il porting del modello su mobile, la prima fase è la conversione della rete TF nel formato `.tflite`
 ```python
 import tensorflow as tf
 
@@ -1628,7 +1627,7 @@ L’oggetto in `tflite_model` può essere serializzato su disco con una scrittur
 with open('my_model.tflite', 'wb') as f:
 		f.write(tflite_model)
 ```
-Il modello può ora essere ******************************importato su Android Studio****************************** da `New > Other > Tensorflow Lite Model` e, se il modello presenta dei ****************metadati****************, è possibile avere la signature dei metodi di inferenza del modello.
+Il modello può ora essere importato su Android Studio da `New > Other > Tensorflow Lite Model` e, se il modello presenta dei metadati, è possibile avere la signature dei metodi di inferenza del modello.
 
 ## PyTorch Mobile
 PyTorch Mobile consente di ottimizzare per mobile un modello, rimanendo nell’ecosistema di PyTorch. 
@@ -1643,39 +1642,37 @@ Oltre agli step descritti, è possibile opzionalmente (e consigliato) applicare 
 
 Una di queste ottimizzazioni è la **quantizzazione dei pesi** (ottimizzazione general-purpose) del modello, cioè ridurre la precisione di un tipo di dato.
 
-<aside>
-💡 Si supponga di rappresentare un insieme di dati con 32 bit, con cui si ha la possibilità di esprimere $2^{32}$valori, (ad esempio) nel range $\small \sim [4 * 10 ^ 9]$. Quantizzando questo insieme ad 8 bit, si potrebbe comunque rappresentare lo stesso **range di valori**, ma con una **granularità notevolmente inferiore:** si rappresenterebbe lo stesso range ($\small \sim [0, 4 * 10 ^ 9]$), ma muovendosi a “step” di $\small N$ valori.
 
-</aside>
+💡 Si supponga di rappresentare un insieme di dati con 32 bit, con cui si ha la possibilità di esprimere $2^{32}$valori, (ad esempio) nel range $\small \sim [4 * 10 ^ 9]$. Quantizzando questo insieme ad 8 bit, si potrebbe comunque rappresentare lo stesso **range di valori**, ma con una **granularità notevolmente inferiore:** si rappresenterebbe lo stesso range ($\small \sim [0, 4 * 10 ^ 9]$), ma muovendosi a “step” di $\small N$ valori.
 
 Vantaggi:
 - L’occupazione di memoria della rete stessa viene diminuita di un fattore 2, 4, ecc…
-- Alcune operazioni, come le ********************fixed point********************, risultano molto più veloci di altre, come le ****************************floating point****************************
+- Alcune operazioni, come le fixed point, risultano molto più veloci di altre, come le floating point
 
 Svantaggi:
 - La precisione delle operazioni e quindi l’**accuratezza** finale potrebbe risentirne.
 
-La quantizzazione viene supportata sia da ******************************TensorFlow Lite****************************** che da **************PyTorch**************. Ovviamente, visto che sono due framework di porting su mobile di modelli già addestrati e convertiti, la quantizzazione viene utilizzata **solo** nel **forward step**.
+La quantizzazione viene supportata sia da TensorFlow Lite che da PyTorch. Ovviamente, visto che sono due framework di porting su mobile di modelli già addestrati e convertiti, la quantizzazione viene utilizzata **solo** nel **forward step**.
 
 In particolare questa ottimizzazione viene applicata:
-- Ai ****************************************parametri della rete**************************************** (i.e. i pesi)
-- Alla ********************************rappresentazione dell’immagine******************************** che questa assume via via che attraversa gli strati della rete.
+- Ai parametri della rete (i.e. i pesi)
+- Alla rappresentazione dell’immagine che questa assume via via che attraversa gli strati della rete.
 
-<aside>
+ 
 ⚠️ Un modello quantizzato risulta più veloce della sua controparte solo se supporto hardware appropriato è fornito sul dispositivo target.
 Quantizzare un modello in `float16` non rende la rete più veloce se l’hardware del dispositivo non ha supporto adeguato alle operazioni tra `float16`.
 
-</aside>
+  
 
 **TensorFlow Lite** offre tre tecniche di **quantizzazione post-addestramento**:
-- ******************************************************Dynamic range quantization******************************************************: è la più semplice, quantizza i pesi da `float32` a `int8`. A ************************tempo di inferenza************************ i pesi vengono opportunamente riconvertiti in `float32`. Alcuni operatori (purtroppo non tutti) detti ****************dinamici**************** possono essere quantizzati **************************dinamicamente************************** in base ad un ****************************range dinamico**************************** ed operare ad `int8`
-- ****************************************************Full integer quantization:**************************************************** tutte le operazioni vengono convertite a `int8`. Per fare ciò, occorre calibrare il range $[min,max]$ di tutti quei tensori del modello che sono già **************statici************** (come i pesi). La stessa cosa purtroppo non si può dire di alcuni tensori, che sono intrinsecamente ****************dinamici****************, come quelli dei risultati dell’inferenza, a meno che non si disponga di quello che viene detto un ******dataset rappresentativo******.
-- ********************************************Float16 quantization:******************************************** come dice il nome, viene tutto quantizzato a `float16` con un’accelerazione di 2x nella velocità di inferenza. Questa tecnica si può utilizzare **solo** quando l’hardware ci fornisce supporto alle operazioni in `float16`
+- **Dynamic range quantization**: è la più semplice, quantizza i pesi da `float32` a `int8`. A tempo di inferenza i pesi vengono opportunamente riconvertiti in `float32`. Alcuni operatori (purtroppo non tutti) detti "dinamici" possono essere quantizzati dinamicamente in base ad un range dinamico ed operare ad `int8`
+- **Full Integer Quantization**: tutte le operazioni vengono convertite a `int8`. Per fare ciò, occorre calibrare il range $[min,max]$ di tutti quei tensori del modello che sono già statici (come i pesi). La stessa cosa purtroppo non si può dire di alcuni tensori, che sono intrinsecamente dinamici, come quelli dei risultati dell’inferenza, a meno che non si disponga di quello che viene detto un dataset rappresentativo.
+- *Float16 quantization*: come dice il nome, viene tutto quantizzato a `float16` con un’accelerazione di 2x nella velocità di inferenza. Questa tecnica si può utilizzare **solo** quando l’hardware ci fornisce supporto alle operazioni in `float16`
 
 Le tecniche di quantizzazione supportate da **PyTorch** sono:
-- ********Dynamic quantization:******** i pesi vengono memorizzati in modo quantizzato e il loro livello di quantizzazione viene modificato all’occorrenza in fase di inferenza.
-- ******************************************Static quantization:****************************************** una quantizzazione piuttosto tradizionale, ma con la possibilità di “fondere” le attivazioni nei livelli precedenti. Ciò ha bisogno di una rappresentazione chiara del dataset per calibrare quanto e come fondere le attivazioni. L’equivalente della **************************Full integer quantization************************** di TF-Lite.
-- ********************************************************Quantization aware training (QAT):******************************************************** in questa interessante tecnica, la quantizzazione viene decisa in fase di training, viene cioè tentata la simulazione a `int8` di alcune operazioni durante la fase di addestramento, che rimane comunque in `float32`.
+- *Dynamic quantization*: i pesi vengono memorizzati in modo quantizzato e il loro livello di quantizzazione viene modificato all’occorrenza in fase di inferenza.
+- *Static quantization*: una quantizzazione piuttosto tradizionale, ma con la possibilità di “fondere” le attivazioni nei livelli precedenti. Ciò ha bisogno di una rappresentazione chiara del dataset per calibrare quanto e come fondere le attivazioni. L’equivalente della Full integer quantization di TF-Lite.
+- *Quantization aware training (QAT)*: in questa interessante tecnica, la quantizzazione viene decisa in fase di training, viene cioè tentata la simulazione a `int8` di alcune operazioni durante la fase di addestramento, che rimane comunque in `float32`.
 
 ---
 
