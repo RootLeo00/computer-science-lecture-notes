@@ -31,7 +31,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Domande intelligenza artificiale.md",
+                "file": "artificial-intelligence/Domande intelligenza artificiale.md",
                 "mode": "source",
                 "source": false
               }
@@ -112,7 +112,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Domande intelligenza artificiale.md",
+                "file": "artificial-intelligence/Domande intelligenza artificiale.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -129,7 +129,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Domande intelligenza artificiale.md",
+                "file": "artificial-intelligence/Domande intelligenza artificiale.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -152,7 +152,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Domande intelligenza artificiale.md"
+                "file": "artificial-intelligence/Domande intelligenza artificiale.md"
               }
             }
           }
@@ -174,12 +174,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "a51ac0a692fe5733",
+  "active": "e3cd7a52e9bbe85b",
   "lastOpenFiles": [
     "Pasted image 20230610165335.png",
     "Pasted image 20230610165247.png",
     "Pasted image 20230610165150.png",
-    "Domande intelligenza artificiale.md",
+    "artificial-intelligence/Domande intelligenza artificiale.md",
     "artificial-intelligence",
     "embedded-systems/Sistemi Digitali - Riassunto.pdf",
     "embedded-systems/Sistemi Digitali - Riassunto.md",
