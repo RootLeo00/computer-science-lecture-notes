@@ -8,37 +8,78 @@
         "type": "tabs",
         "children": [
           {
-            "id": "5e6f2c1a7653b174",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {}
-            }
-          },
-          {
             "id": "a1e87deb865d8df0",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.3.5"
-              }
-            }
-          },
-          {
-            "id": "a51ac0a692fe5733",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "artificial-intelligence/Domande intelligenza artificiale.md",
+                "file": "system-software-engineering/ColdStorageServiceSprint0v1.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "81851c0d27df5b68",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Appl1-SonarSprint1CaterinaLeonelliV0.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "d78a59bdd030147a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV0.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "d3c2800644f834dc",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV1.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "355c65974ab926f3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV2.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "d7347489ad0fa706",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Appl1-SonarSprint1CaterinaLeonelliV0.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -112,7 +153,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "artificial-intelligence/Domande intelligenza artificiale.md",
+                "file": "system-software-engineering/ColdStorageServiceSprint0v1.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -129,7 +170,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "artificial-intelligence/Domande intelligenza artificiale.md",
+                "file": "system-software-engineering/ColdStorageServiceSprint0v1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -152,7 +193,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "artificial-intelligence/Domande intelligenza artificiale.md"
+                "file": "system-software-engineering/ColdStorageServiceSprint0v1.md"
               }
             }
           }
@@ -174,37 +215,38 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "e3cd7a52e9bbe85b",
+  "active": "a1e87deb865d8df0",
   "lastOpenFiles": [
+    "macrocomponents 1.png",
+    "macrocomponents.png",
+    "appl1qakarch 1.png",
+    "Pasted image 20230630233934.png",
+    "appl1qakarch.png",
+    "Appl1-SonarSprint1CaterinaLeonelliV0.md",
+    "system-software-engineering/ColdStorageServiceSprint0v1.md",
+    "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV0.md",
+    "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV2.md",
+    "system-software-engineering/Lectures.md",
+    "system-software-engineering/Appl1FinalArchitecture.png",
+    "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV1.md",
+    "Screenshot_2023-01-17_alle_14.23.52.png.md",
+    "README.md",
+    "system-software-engineering/README.md",
+    "artificial-intelligence/Domande intelligenza artificiale.md",
     "Pasted image 20230610165335.png",
     "Pasted image 20230610165247.png",
     "Pasted image 20230610165150.png",
-    "artificial-intelligence/Domande intelligenza artificiale.md",
     "artificial-intelligence",
     "embedded-systems/Sistemi Digitali - Riassunto.pdf",
     "embedded-systems/Sistemi Digitali - Riassunto.md",
     "Pasted image 20230520202400.png",
     "Pasted image 20230520202312.png",
-    "Pasted image 20230520201917.png",
-    "Pasted image 20230520201311.png",
-    "Pasted image 20230520195610.png",
-    "Pasted image 20230520195153.png",
-    "Pasted image 20230520195125.png",
-    "Pasted image 20230520193025.png",
-    "Screenshot_2023-01-17_alle_14.23.52.png.md",
     "Pasted.md",
     "Sistemi Digitali - Riassunto a4d66cbab3e84c17ac1a2addf86e38ae/Screenshot_2023-01-17_alle_14.23.52.png.md",
-    "system-software-engineering/Lectures.md",
     "Sistemi Digitali - Riassunto a4d66cbab3e84c17ac1a2addf86e38ae",
     "embedded-systems/Sistemi Digitali - Riassunto a4d66cbab3e84c17ac1a2addf86e38ae",
     "embedded-systems",
-    "Appl1-SonarSprint1CaterinaLeonelliV0.md",
     "system-software-engineering/Appl1-HTTPPingPongLeonelliCaterinaV0.md",
-    "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV2.md",
-    "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV1.md",
-    "system-software-engineering/Appl1-HTTPSprint3LeonelliCaterinaV0.md",
-    "system-software-engineering/README.md",
-    "README.md",
     "system-software-engineering",
     "temp",
     "notes-iss/README.md",
